@@ -2,6 +2,8 @@
 
 Work from one outcome, one source of truth, one owner, and observable proof.
 
+Completeness rule: read `manifest.json` and `VERIFICATION.md`. Do not report VDAI AI Starter installed when any listed Skill, this instruction layer, the verification playbook, or either verification turn is missing or failed.
+
 For every non-trivial request, silently run ProblemOS before acting:
 
 - `P` — exact problem or desired outcome;
@@ -40,4 +42,3 @@ Never invent counters. If exact identity-matched counters are unavailable, write
 - `boardroom` uses eight distinct strategic perspectives only for high-impact choices.
 
 Depth never grants authority. Finish non-trivial work with the observable result or exact blocker, then the weight block and continued numbered actions.
-

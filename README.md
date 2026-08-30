@@ -9,7 +9,7 @@ It contains eleven transparent Skills, persistent instruction layers for both ag
 - Fastest path: copy this prompt into Codex or Claude Code:
 
 ```text
-Install the complete VDAI AI Starter · Dmitrii Pro from https://github.com/vasilevdasfo/vdai-ai-starter on this computer. First read README.md, VDAI_AI_STARTER_INSTALL.md, CODEX_PERMISSIONS.md, starter-pack/AGENTS.md or starter-pack/CLAUDE.md for the current agent, and all 11 public SKILL.md files. Do not enable danger-full-access automatically. Do not overwrite existing instructions or configuration. If a target exists, show the exact diff and wait for my approval. Before changing permissions, ask me to choose: 1 = on-request + workspace-write; 2 = never + danger-full-access only inside a small isolated folder with no secrets. After approval, install all 11 Skills and merge only the approved instruction changes. Verify with one real task using P/U/L/R/N, an owner, proof, numbered next actions, one recommendation and a safe 0 route. Report PASS/FAIL for 11 Skills, AGENTS/CLAUDE and the verification task.
+Install the complete VDAI AI Starter · Dmitrii Pro from https://github.com/vasilevdasfo/vdai-ai-starter on this computer. Read starter-pack/manifest.json and starter-pack/VERIFICATION.md first. Treat the manifest as the completeness contract: a partial Skill set is FAIL. Inspect all 11 public SKILL.md files and the correct instruction file, starter-pack/AGENTS.md for Codex or starter-pack/CLAUDE.md for Claude Code. Do not enable danger-full-access automatically. Do not overwrite existing instructions or configuration. If a target exists, show the exact diff and wait for my approval. Before changing permissions, ask me to choose: 1 = on-request + workspace-write; 2 = never + danger-full-access only inside a small isolated folder with no secrets. After approval, install all 11 Skills, VERIFICATION.md and only the approved instruction merge. Run both verification turns from VERIFICATION.md. Report PASS/FAIL for each of the 11 Skills, AGENTS/CLAUDE, VERIFICATION.md and both turns.
 ```
 
 - Read [VDAI_AI_STARTER_INSTALL.md](VDAI_AI_STARTER_INSTALL.md).
@@ -17,6 +17,8 @@ Install the complete VDAI AI Starter · Dmitrii Pro from https://github.com/vasi
 - For Codex, review [starter-pack/AGENTS.md](starter-pack/AGENTS.md).
 - For Claude Code, review [starter-pack/CLAUDE.md](starter-pack/CLAUDE.md).
 - Follow [starter-pack/INSTALL.md](starter-pack/INSTALL.md) or inspect the installers before running them.
+- Use [starter-pack/VERIFICATION.md](starter-pack/VERIFICATION.md) for the 11 observable verification tasks.
+- Use [starter-pack/manifest.json](starter-pack/manifest.json) as the machine-readable completeness contract.
 
 ## Included Skills
 

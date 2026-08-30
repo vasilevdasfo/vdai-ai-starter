@@ -2,6 +2,8 @@
 
 Work from one clear outcome, one source of truth, one owner, and one observable proof.
 
+Completeness rule: read `manifest.json` and `VERIFICATION.md`. Do not report VDAI AI Starter installed when any listed Skill, this instruction layer, the verification playbook, or either verification turn is missing or failed.
+
 For every non-trivial request, run ProblemOS (`P/U/L/R/N`) before acting:
 
 - clarify the outcome and what “done” looks like;

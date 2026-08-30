@@ -14,6 +14,7 @@ if [[ "$target_kind" == ".codex" ]]; then
 else
   [[ -e "$target/CLAUDE.md" ]] && conflict=1
 fi
+[[ -e "$target/VDAI_AI_STARTER_VERIFICATION.md" ]] && conflict=1
 for skill in "${skills[@]}"; do [[ -e "$target/skills/$skill" ]] && conflict=1; done
 if [[ "$conflict" -eq 1 ]]; then
   echo "Existing Claude configuration detected. Nothing was overwritten. Follow INSTALL.md to merge manually."
@@ -25,8 +26,9 @@ if [[ "$target_kind" == ".codex" ]]; then
 else
   cp "$source_dir/CLAUDE.md" "$target/CLAUDE.md"
 fi
+cp "$source_dir/VERIFICATION.md" "$target/VDAI_AI_STARTER_VERIFICATION.md"
 for skill in "${skills[@]}"; do
   mkdir -p "$target/skills/$skill"
   cp "$source_dir/skills/$skill/SKILL.md" "$target/skills/$skill/SKILL.md"
 done
-echo "VDAI AI Starter · Dmitrii Pro installed. Restart the agent and run both verification turns from INSTALL.md."
+echo "VDAI AI Starter · Dmitrii Pro installed. Restart the agent and run both turns from VDAI_AI_STARTER_VERIFICATION.md."

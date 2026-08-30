@@ -20,7 +20,7 @@ From this unpacked folder run:
 
 ## Manual installation
 
-For Codex, merge `AGENTS.md` into `~/.codex/AGENTS.md` and copy the eleven folders inside `skills/` into `~/.codex/skills/`. For Claude Code, use `CLAUDE.md` and `~/.claude/skills/`. Restart the app or open a new task. Existing files must be merged deliberately.
+For Codex, merge `AGENTS.md` into `~/.codex/AGENTS.md`, copy `VERIFICATION.md` as `~/.codex/VDAI_AI_STARTER_VERIFICATION.md`, and copy the eleven folders inside `skills/` into `~/.codex/skills/`. For Claude Code, use `CLAUDE.md`, `~/.claude/VDAI_AI_STARTER_VERIFICATION.md`, and `~/.claude/skills/`. Restart the app or open a new task. Existing files must be merged deliberately.
 
 ## Included Skills
 
@@ -38,7 +38,7 @@ Turn 1:
 
 `I need to improve how I use AI. Diagnose one real task with P/U/L/R/N and finish with numbered next actions where 0 means all safe actions.`
 
-Installation is successful when all eleven Skills are discovered and the reply contains P/U/L/R/N, an owner/proof, a real or explicitly unavailable task weight, continued numbered actions, exactly one recommendation, and a safe `0` route. `SOS1`, `SOS2`, critique and boardroom must be discoverable without being invoked automatically.
+Installation is successful only when `manifest.json` is satisfied: all eleven Skills and `VDAI_AI_STARTER_VERIFICATION.md` are discovered, the correct instruction layer is merged, and both turns in `VERIFICATION.md` pass. A partial set is FAIL.
 
 Turn 2 in the same task:
 
