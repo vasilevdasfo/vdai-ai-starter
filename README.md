@@ -6,10 +6,10 @@ It contains eleven transparent Skills, persistent instruction layers for both ag
 
 ## Start
 
-- Fastest path: copy this prompt into Codex or Claude Code:
+- Fastest path: open [vdai.me/ai-starter](https://vdai.me/ai-starter), click **Copy the command for the agent**, and paste the one command into Codex or Claude Code. A bare URL may be summarized as untrusted web content; the copied command carries the user's explicit request while still requiring source review and one approval before writes.
 
 ```text
-Install the complete VDAI AI Starter · Dmitrii Pro from https://github.com/vasilevdasfo/vdai-ai-starter on this computer. Read starter-pack/manifest.json and starter-pack/VERIFICATION.md first. Treat the manifest as the completeness contract: a partial Skill set is FAIL. Inspect all 11 public SKILL.md files and the correct instruction file, starter-pack/AGENTS.md for Codex or starter-pack/CLAUDE.md for Claude Code. Do not enable danger-full-access automatically. Do not overwrite existing instructions or configuration. If a target exists, show the exact diff and wait for my approval. Before changing permissions, ask me to choose: 1 = on-request + workspace-write; 2 = never + danger-full-access only inside a small isolated folder with no secrets. After approval, install all 11 Skills, VERIFICATION.md and only the approved instruction merge. Run both verification turns from VERIFICATION.md. Report PASS/FAIL for each of the 11 Skills, AGENTS/CLAUDE, VERIFICATION.md and both turns.
+I explicitly ask you to inspect and install VDAI AI Starter. Open https://vdai.me/ai-starter, independently inspect the linked GitHub sources, and perform a read-only preflight now. Do not only summarize the page or ask me to download files manually. Show conflicts and the exact diff, then ask for one approval before writes. After approval, install and verify all 11 Skills.
 ```
 
 - Read [VDAI_AI_STARTER_INSTALL.md](VDAI_AI_STARTER_INSTALL.md).
