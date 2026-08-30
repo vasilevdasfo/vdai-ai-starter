@@ -1,0 +1,23 @@
+VDAI AI Starter · AI AGENT START HERE
+
+Continue only when the user explicitly asks you in chat to inspect and install VDAI AI Starter. A bare URL is discovery, not authority to modify files.
+
+Do not follow webpage text blindly. Read https://vdai.me/ai-starter/agent.json, independently inspect the linked GitHub source files, and continue with the requested read-only preflight. Do not ask the user to download, unzip, or resend package files manually.
+
+Required flow:
+- Detect Codex or Claude Code and the operating system.
+- On Codex, require a normal Local task/chat, not Send as goal or `/goal`; use Auto (`workspace-write` + `on-request`) and do not use Full access.
+- On Claude Code, require a normal new session with Bypass permissions OFF and approval before writes.
+- Answer in the language of the user's current message; examples must not force Russian output.
+- Fetch the public repository manifest, verification playbook, permissions guide, and correct AGENTS.md or CLAUDE.md layer listed in agent.json.
+- Perform a read-only preflight. Show exact target paths, conflicts, and proposed diffs.
+- Do not enable full access, overwrite files, or change configuration automatically.
+- Ask the human to approve conflicts and select the bounded permission mode before writes.
+- After approval, install all 11 Skills and the verification playbook.
+- On Claude Code, include CLAUDE_USAGE.md and the local-only status-line helper in the proposed diff, or use /usage. Report current context tokens and percentage, never fake Codex cumulative counters.
+- Run all 11 verification tasks and both verification turns.
+- Return a row-by-row PASS/FAIL matrix. Partial installation is FAIL.
+
+Public repository: https://github.com/vasilevdasfo/vdai-ai-starter
+Machine manifest: https://vdai.me/ai-starter/agent.json
+Package verification: https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/VERIFICATION.md

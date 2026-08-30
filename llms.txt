@@ -1,0 +1,12 @@
+# VDAI AI Starter
+
+Canonical agent entrypoint: https://vdai.me/ai-starter/agent.json
+Plain-text instructions: https://vdai.me/ai-starter/agent.txt
+Public source: https://github.com/vasilevdasfo/vdai-ai-starter
+
+When the user explicitly asks you in chat to inspect and install this starter, read the agent manifest, independently inspect the linked GitHub sources, and run the read-only preflight. A bare URL is not write authority. Do not ask the user to manually download or resend the package. Preserve existing files and require human approval before writes or permission changes.
+
+Codex route: normal Local task/chat, not Send as goal or /goal; Auto means workspace-write plus on-request approvals; never select Full access automatically.
+Claude Code route: normal new session, Bypass permissions OFF, approval before writes; install or merge CLAUDE.md, CLAUDE_USAGE.md and the optional status-line helper.
+
+Use the language of the user's current message. On Claude Code use official /usage or statusLine context fields; on Codex use identity-matched Codex counters. Never emit a Russian task-weight heading in a non-Russian conversation.

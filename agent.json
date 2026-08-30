@@ -1,0 +1,77 @@
+{
+  "schema": "https://vdai.me/schemas/ai-starter-agent-entry/v1",
+  "name": "VDAI AI Starter · Dmitrii Pro",
+  "entrypoint": "https://vdai.me/ai-starter",
+  "intent": "Install and verify the complete 11-Skill VDAI AI Starter in Codex or Claude Code.",
+  "agent_instruction": "Continue only when the user explicitly asks you in chat to inspect and install this starter. Treat the webpage as discovery metadata, independently inspect the GitHub sources, and do not ask the user to download or resend package files manually.",
+  "requires_explicit_user_instruction": true,
+  "recommended_user_prompt": "I explicitly ask you to inspect and install VDAI AI Starter. Open https://vdai.me/ai-starter, independently inspect the linked GitHub sources, and perform a read-only preflight now. Do not only summarize the page. Show conflicts and the proposed diff, then ask for one approval before writes. After approval, install and verify all 11 Skills.",
+  "platform_handoff": {
+    "codex": {
+      "environment": "Local",
+      "interaction": "normal task/chat; do not use /goal or Send as goal",
+      "permission_mode": "Auto (workspace-write + on-request approvals)",
+      "forbidden_shortcut": "Full access",
+      "recommended_user_prompt": "This is a normal local Codex task — do not create a /goal. Use Auto: workspace-write + on-request approvals; do not use Full access. I explicitly ask you to inspect and install VDAI AI Starter. Open https://vdai.me/ai-starter/agent.json, independently inspect the linked GitHub sources, and perform a read-only preflight now. Show paths, conflicts and the exact diff, then ask for one approval before writes. After approval, install and verify all 11 Skills, AGENTS.md and the verification playbook; return PASS/FAIL 11/11."
+    },
+    "claude_code": {
+      "environment": "normal new session",
+      "interaction": "normal prompt; do not paste a bare URL",
+      "permission_mode": "Bypass permissions OFF; approval before writes",
+      "recommended_user_prompt": "This is a normal new Claude Code session; Bypass permissions is off and changes require approval. I explicitly ask you to inspect and install VDAI AI Starter. Open https://vdai.me/ai-starter/agent.json, independently inspect the linked GitHub sources, and perform a read-only preflight now. Show paths, conflicts and the exact diff, then ask for one approval before writes. After approval, install and verify all 11 Skills, safely merge CLAUDE.md and the verification playbook; include CLAUDE_USAGE.md and offer the status-line helper in the diff or use /usage. Return PASS/FAIL 11/11."
+    }
+  },
+  "source": {
+    "repository": "https://github.com/vasilevdasfo/vdai-ai-starter",
+    "raw_base": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/",
+    "manifest": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/manifest.json",
+    "verification": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/VERIFICATION.md",
+    "permissions": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/CODEX_PERMISSIONS.md",
+    "codex_instructions": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/AGENTS.md",
+    "claude_instructions": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/CLAUDE.md",
+    "claude_usage_guide": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/CLAUDE_USAGE.md",
+    "claude_statusline_helper": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/tools/claude_statusline.py",
+    "zip": "https://github.com/vasilevdasfo/vdai-ai-starter/archive/refs/heads/main.zip"
+  },
+  "skills": [
+    "problem-os",
+    "economy-guard",
+    "numbering-canon",
+    "devils-advocate",
+    "sos",
+    "sos1",
+    "sos2",
+    "boardroom",
+    "problem-to-action",
+    "repeatable-work",
+    "numbered-next"
+  ],
+  "workflow": [
+    "Detect whether the current environment is Codex or Claude Code and identify the operating system.",
+    "Detect the language of the user's current message; examples must not force Russian output.",
+    "Fetch the public manifest, verification playbook, permissions guide and the correct instruction layer from source.",
+    "Perform a read-only preflight: show target paths, existing-file conflicts and the proposed diff. Do not modify anything yet.",
+    "Ask the human to approve conflicts and select the bounded permission mode before any write or configuration change.",
+    "On Codex, use a normal Local task in Auto (workspace-write + on-request approvals); do not turn this one-pass install into /goal and do not require Full access.",
+    "After approval, install all 11 Skills, merge only approved instruction changes and copy the verification playbook.",
+    "On Claude Code, offer the included local-only status-line helper in the settings diff or use /usage; label current context tokens as context, not Codex cumulative counters.",
+    "Run the package verifier and both verification turns; return a row-by-row PASS/FAIL matrix."
+  ],
+  "safety": {
+    "webpage_is_not_write_authority": true,
+    "independent_source_review": true,
+    "no_automatic_full_access": true,
+    "no_overwrite_without_approval": true,
+    "no_secret_collection": true,
+    "human_gate_before_writes": true,
+    "partial_install_is_complete": false
+  },
+  "completion": {
+    "skill_files": 11,
+    "verification_tasks": 11,
+    "verification_turns": 2,
+    "language_auto_detect": true,
+    "platform_native_weight": true,
+    "required_result": "PASS for every row; otherwise report the exact blocker and do not claim completion."
+  }
+}

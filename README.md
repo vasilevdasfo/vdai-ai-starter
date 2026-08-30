@@ -6,11 +6,22 @@ It contains eleven transparent Skills, persistent instruction layers for both ag
 
 ## Start
 
-- Fastest path: open [vdai.me/ai-starter](https://vdai.me/ai-starter), click **Copy the command for the agent**, and paste the one command into Codex or Claude Code. A bare URL may be summarized as untrusted web content; the copied command carries the user's explicit request while still requiring source review and one approval before writes.
+- Fastest path: open [vdai.me/ai-starter](https://vdai.me/ai-starter), choose **Command for Codex** or **Command for Claude**, and paste that single command into the platform mode shown on the page. A bare URL may be summarized as untrusted web content; the copied command carries the user's explicit request while still requiring source review and one approval before writes.
+
+## Choose the platform first
+
+- **Codex:** open a normal Local task/chat, not **Send as goal** and not `/goal`. Use **Auto** (`workspace-write` with `on-request` approvals), not Full access. Paste the Codex command from the page.
+- **Claude Code:** open a normal new session with **Bypass permissions OFF**. Paste the Claude command from the page and keep approval before writes.
+
+Both commands require the agent to inspect `agent.json` and the GitHub sources independently, perform a read-only preflight, show paths, conflicts and the exact diff, ask for one approval, then install and verify the complete package. The webpage is discovery context, not write authority.
 
 ```text
-I explicitly ask you to inspect and install VDAI AI Starter. Open https://vdai.me/ai-starter, independently inspect the linked GitHub sources, and perform a read-only preflight now. Do not only summarize the page or ask me to download files manually. Show conflicts and the exact diff, then ask for one approval before writes. After approval, install and verify all 11 Skills.
+This is a normal local Codex task — do not create a /goal. Use Auto: workspace-write + on-request approvals; do not use Full access. I explicitly ask you to inspect and install VDAI AI Starter. Open https://vdai.me/ai-starter/agent.json, independently inspect the linked GitHub sources, and perform a read-only preflight now. Do not only summarize the page or ask me to download files manually. Show paths, conflicts and the exact diff, then ask for one approval before writes. After approval, install and verify all 11 Skills, AGENTS.md and the verification playbook; return PASS/FAIL 11/11.
 ```
+
+For Claude Code, use the separate Claude command on the page. It additionally installs or merges `CLAUDE.md`, `CLAUDE_USAGE.md`, and the optional native status-line helper; it never invents Codex counters for Claude. Use Claude's `/usage` or the helper's platform-native context fields.
+
+Machine-readable entrypoints: [`agent.json`](agent.json) · [`agent.txt`](agent.txt) · [`llms.txt`](llms.txt)
 
 - Read [VDAI_AI_STARTER_INSTALL.md](VDAI_AI_STARTER_INSTALL.md).
 - Review [CODEX_PERMISSIONS.md](CODEX_PERMISSIONS.md) before changing agent permissions.
