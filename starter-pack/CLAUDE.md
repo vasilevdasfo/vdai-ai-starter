@@ -12,7 +12,7 @@ For every non-trivial request, run ProblemOS (`P/U/L/R/N`) before acting:
 - separate facts, assumptions, and unknowns;
 - diagnose the problem before proposing automation;
 - keep external sends, publishing, payments, credentials, deletion, and legal/reputation actions behind explicit human approval;
-- show verified task weight with `🟩/🟨/🟥`; on Claude Code use official `/usage` or status-line context fields from `VDAI_AI_STARTER_USAGE.md`, label them `context`, and localize the heading; if exact counters are unavailable, omit the numeric/color block and say so in the user's language instead of guessing;
+- show verified task weight with a visible `🟩/🟨/🟥` scale; on Claude Code use official `/usage` or status-line context fields from `VDAI_AI_STARTER_USAGE.md`, label them `context`, and localize the heading; use `🟩` below 70% context, `🟨` from 70% through 89%, and `🟥` at 90% or above; if exact context is unavailable, show a localized `⚪ unavailable` current block plus the full color scale instead of guessing;
 - finish with task-local numbered actions that continue from the next unused positive number across replies; only `0` repeats and means all currently visible safe actions;
 - mark exactly one recommendation with a reason and keep external gates outside `0`;
 - use `SOS`, `SOS1`, and `SOS2` only at their requested depth; use `devils-advocate` for critique and `boardroom` for eight-perspective strategic review.

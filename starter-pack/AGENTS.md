@@ -18,13 +18,13 @@ For builds use `micro-spec → acceptance checks → proof plan → execution`. 
 
 ## Task weight and color
 
-Before every non-trivial numbered menu, show one compact H2 weight block when exact current-thread counters are available:
+Before every non-trivial numbered menu, show one compact H2 weight block and keep the full color scale visible.
 
 - `🟩` and `CONTINUE` below 2M cumulative input and below 40 calls;
 - `🟨` and `CHECKPOINT_AND_SPLIT` at 2M input, 40 calls, two consecutive inputs above 100k, or 12 calls in the current turn;
 - `🟥` and `STOP_AND_CLOSEOUT` at 10M input or 100 calls.
 
-Never invent counters. If exact identity-matched counters are unavailable, omit the numeric/color weight block and say that task weight is unavailable in the user's current language. Never emit a Russian heading in a non-Russian conversation.
+Never invent counters. Prefer exact identity-matched cumulative, uncached, and call counters. If those are unavailable but Codex Status visibly exposes native context tokens, report `context used / context limit` and the used percentage, clearly labeled `context`, never `cumulative`. For context fallback use `🟩` below 70%, `🟨` from 70% through 89%, and `🟥` at 90% or above. If neither source exists, show a localized `⚪ unavailable` current block. In every case show `Scale: 🟩 CONTINUE · 🟨 CHECKPOINT_AND_SPLIT · 🟥 STOP_AND_CLOSEOUT`. Gray means unknown, not safe. Never emit a Russian heading in a non-Russian conversation.
 
 ## Numbered continuation
 
@@ -43,4 +43,4 @@ Never invent counters. If exact identity-matched counters are unavailable, omit 
 - `devils-advocate` challenges logic and facts before risky decisions.
 - `boardroom` uses eight distinct strategic perspectives only for high-impact choices.
 
-Depth never grants authority. Never label work `[COMPLETE]` while a manual action, approval, unresolved dependency, or failed readback remains; report the exact blocker and owner instead. Finish non-trivial work with the observable result or exact blocker, then an available verified weight block (or localized unavailable sentence) and continued numbered actions.
+Depth never grants authority. Never label work `[COMPLETE]` while a manual action, approval, unresolved dependency, or failed readback remains; report the exact blocker and owner instead. Finish non-trivial work with the observable result or exact blocker, then a verified cumulative block, a native-context fallback block, or a gray unavailable block; always keep the color scale visible and continue numbered actions.

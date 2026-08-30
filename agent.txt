@@ -16,6 +16,8 @@ Required flow:
 - After approval, install all 11 Skills and the verification playbook.
 - Use `manifest.json` and `VERIFICATION.md` at source preflight. In the installed live profile, verify the 11 installed Skill paths, the merged instruction layer, and `VDAI_AI_STARTER_VERIFICATION.md`; do not require source-only filenames or report a false missing-manifest failure.
 - On Claude Code, include CLAUDE_USAGE.md and the local-only status-line helper in the proposed diff, or use /usage. Report current context tokens and percentage, never fake Codex cumulative counters.
+- On Codex, prefer identity-matched cumulative/uncached/call counters. If unavailable but the native Status panel exposes context tokens, report context used/limit and percentage instead of saying unavailable. Always show the 🟩/🟨/🟥 scale; use ⚪ only when neither source exists.
+- Install VDAI_AI_STARTER_FEEDBACK.md. Feedback is drafted locally, then submitted only with human approval through the public GitHub Issue form; never include secrets or private data.
 - Run all 11 verification tasks and both verification turns.
 - Return a row-by-row PASS/FAIL matrix. Partial installation is FAIL.
 

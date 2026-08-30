@@ -31,6 +31,8 @@
     "claude_instructions": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/CLAUDE.md",
     "claude_usage_guide": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/CLAUDE_USAGE.md",
     "claude_statusline_helper": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/tools/claude_statusline.py",
+    "feedback_guide": "https://raw.githubusercontent.com/vasilevdasfo/vdai-ai-starter/main/starter-pack/FEEDBACK.md",
+    "feedback_form": "https://github.com/vasilevdasfo/vdai-ai-starter/issues/new?template=starter-feedback.yml",
     "zip": "https://github.com/vasilevdasfo/vdai-ai-starter/archive/refs/heads/main.zip"
   },
   "skills": [
@@ -55,7 +57,9 @@
     "On Codex, use a normal Local task in Auto (workspace-write + on-request approvals); do not turn this one-pass install into /goal and do not require Full access.",
     "After approval, install all 11 Skills, merge only approved instruction changes and copy the verification playbook.",
     "Distinguish source filenames from installed live-profile paths: use manifest.json and VERIFICATION.md during preflight, but verify VDAI_AI_STARTER_VERIFICATION.md and the installed instruction/Skill paths after installation; do not report a missing source manifest in the live profile.",
-    "On Claude Code, offer the included local-only status-line helper in the settings diff or use /usage; label current context tokens as context, not Codex cumulative counters.",
+    "On Codex, prefer identity-matched cumulative counters; if unavailable but native Status exposes context tokens, report context used/limit and percentage, explicitly labeled context. Always show the color scale.",
+    "On Claude Code, offer the included local-only status-line helper in the settings diff or use /usage; label current context tokens as context, not Codex cumulative counters, and always show the color scale.",
+    "Install the feedback guide. Prepare feedback locally with platform, version and safe reproduction; submit to the public GitHub form only after human approval.",
     "Run the package verifier and both verification turns; return a row-by-row PASS/FAIL matrix."
   ],
   "safety": {
@@ -73,6 +77,8 @@
     "verification_turns": 2,
     "language_auto_detect": true,
     "platform_native_weight": true,
+    "visible_weight_scale": true,
+    "feedback_route_installed": true,
     "installed_path_contract": {
       "source_filenames_required_in_live_profile": false,
       "codex_verification": "VDAI_AI_STARTER_VERIFICATION.md",

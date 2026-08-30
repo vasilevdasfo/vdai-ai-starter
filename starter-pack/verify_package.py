@@ -93,8 +93,16 @@ def verify(pack: Path) -> list[str]:
     for required in ("TASK WEIGHT", "PESO DE LA TAREA", "WAGA ZADANIA", "Claude Code", "statusLine"):
         if required not in economy:
             errors.append(f"economy-guard lacks: {required}")
-    if "omit the numeric/color weight block" not in economy:
-        errors.append("economy-guard does not define unavailable-counter omission")
+    for required in ("native Codex Status", "37,889 / 250k context tokens", "⚪", "🟩 CONTINUE", "🟨 CHECKPOINT_AND_SPLIT", "🟥 STOP_AND_CLOSEOUT", "Gray means unknown, not safe"):
+        if required not in economy:
+            errors.append(f"economy-guard lacks platform-native weight contract: {required}")
+    if "omit the numeric/color weight block" in economy:
+        errors.append("economy-guard still removes color icons when counters are unavailable")
+
+    feedback = (pack / "FEEDBACK.md").read_text(encoding="utf-8") if (pack / "FEEDBACK.md").is_file() else ""
+    for required in ("GitHub Issue", "platform", "version", "reproduction", "Never include"):
+        if required not in feedback:
+            errors.append(f"feedback guide lacks: {required}")
 
     numbering = (pack / "skills" / "numbering-canon" / "SKILL.md").read_text(encoding="utf-8")
     if "Почему:" in numbering or "localized to the user's current language" not in numbering:
@@ -112,6 +120,8 @@ def verify(pack: Path) -> list[str]:
             errors.append(f"{installer_name} does not install the verification playbook")
         if "CLAUDE_USAGE.md" not in installer or "claude_statusline.py" not in installer:
             errors.append(f"{installer_name} does not include Claude usage support")
+        if "FEEDBACK.md" not in installer or "VDAI_AI_STARTER_FEEDBACK.md" not in installer:
+            errors.append(f"{installer_name} does not install feedback guide")
 
     return errors
 

@@ -11,7 +11,7 @@ First detect the current platform and the language of the user's current message
 
 ## Platform-native counters
 
-For Codex, when exact identity-matched counters are available, show cumulative input, uncached input, and calls. Use the Codex thresholds below.
+For Codex, when exact identity-matched counters are available, show cumulative input, uncached input, and calls. Use the Codex thresholds below. If cumulative counters are unavailable but the native Codex Status panel visibly exposes context tokens, use the displayed context used/limit values as an explicitly labeled fallback; never relabel context as cumulative.
 
 For Claude Code, use only its official `/usage` or `statusLine` data. Read `CLAUDE_USAGE.md` when installed. Claude Code 2.1.132+ exposes current context input/output tokens and context percentage, not Codex cumulative/call counters. Label them `context`, never `cumulative`.
 
@@ -32,7 +32,9 @@ Localized headings:
 - Spanish: `PESO DE LA TAREA`
 - Polish: `WAGA ZADANIA`
 
-Never invent counters. If exact counters or identity proof are unavailable, omit the numeric/color weight block, say that task weight is unavailable in the user's current language, and do not display guessed numbers. Do not emit a Russian heading in an English, Spanish, or Polish conversation.
+For platform-native context fallback, use `🟩` below 70% used, `🟨` from 70% through 89%, and `🟥` at 90% or above. Example: `## 🟩 TASK WEIGHT: **37,889 / 250k context tokens** · **15% used** · CONTINUE`.
+
+Never invent counters. If neither verified cumulative data nor visible platform-native context data is available, show a localized gray current block: `## ⚪ TASK WEIGHT: unavailable · exact counters not exposed`. Always follow every current block with `Scale: 🟩 CONTINUE · 🟨 CHECKPOINT_AND_SPLIT · 🟥 STOP_AND_CLOSEOUT`. Gray means unknown, not safe. Do not assign a colored current status without verified cumulative or native-context values. Do not emit a Russian heading in an English, Spanish, or Polish conversation.
 
 ## Identity and counting rules
 

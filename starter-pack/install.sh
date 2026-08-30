@@ -15,6 +15,7 @@ else
   [[ -e "$target/CLAUDE.md" ]] && conflict=1
 fi
 [[ -e "$target/VDAI_AI_STARTER_VERIFICATION.md" ]] && conflict=1
+[[ -e "$target/VDAI_AI_STARTER_FEEDBACK.md" ]] && conflict=1
 [[ "$target_kind" == ".claude" && -e "$target/VDAI_AI_STARTER_USAGE.md" ]] && conflict=1
 for skill in "${skills[@]}"; do [[ -e "$target/skills/$skill" ]] && conflict=1; done
 if [[ "$conflict" -eq 1 ]]; then
@@ -28,6 +29,7 @@ else
   cp "$source_dir/CLAUDE.md" "$target/CLAUDE.md"
 fi
 cp "$source_dir/VERIFICATION.md" "$target/VDAI_AI_STARTER_VERIFICATION.md"
+cp "$source_dir/FEEDBACK.md" "$target/VDAI_AI_STARTER_FEEDBACK.md"
 if [[ "$target_kind" == ".claude" ]]; then
   cp "$source_dir/CLAUDE_USAGE.md" "$target/VDAI_AI_STARTER_USAGE.md"
   cp "$source_dir/tools/claude_statusline.py" "$target/vdai-statusline.py"
@@ -37,4 +39,4 @@ for skill in "${skills[@]}"; do
   mkdir -p "$target/skills/$skill"
   cp "$source_dir/skills/$skill/SKILL.md" "$target/skills/$skill/SKILL.md"
 done
-echo "VDAI AI Starter · Dmitrii Pro installed. Restart the agent and run both turns from VDAI_AI_STARTER_VERIFICATION.md. Claude Code users: review VDAI_AI_STARTER_USAGE.md before merging statusLine settings."
+echo "VDAI AI Starter · Dmitrii Pro installed. Restart the agent and run both turns from VDAI_AI_STARTER_VERIFICATION.md. Feedback instructions: VDAI_AI_STARTER_FEEDBACK.md. Claude Code users: review VDAI_AI_STARTER_USAGE.md before merging statusLine settings."
