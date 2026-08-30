@@ -16,6 +16,8 @@ else
 fi
 [[ -e "$target/VDAI_AI_STARTER_VERIFICATION.md" ]] && conflict=1
 [[ -e "$target/VDAI_AI_STARTER_FEEDBACK.md" ]] && conflict=1
+[[ -e "$target/VDAI_AI_STARTER_VISUAL_GUIDE.md" ]] && conflict=1
+[[ "$target_kind" == ".codex" && -e "$target/vdai-task-weight.py" ]] && conflict=1
 [[ "$target_kind" == ".claude" && -e "$target/VDAI_AI_STARTER_USAGE.md" ]] && conflict=1
 for skill in "${skills[@]}"; do [[ -e "$target/skills/$skill" ]] && conflict=1; done
 if [[ "$conflict" -eq 1 ]]; then
@@ -30,6 +32,11 @@ else
 fi
 cp "$source_dir/VERIFICATION.md" "$target/VDAI_AI_STARTER_VERIFICATION.md"
 cp "$source_dir/FEEDBACK.md" "$target/VDAI_AI_STARTER_FEEDBACK.md"
+cp "$source_dir/VISUAL_TASK_LABELS.md" "$target/VDAI_AI_STARTER_VISUAL_GUIDE.md"
+if [[ "$target_kind" == ".codex" ]]; then
+  cp "$source_dir/tools/codex_task_weight.py" "$target/vdai-task-weight.py"
+  chmod 0755 "$target/vdai-task-weight.py"
+fi
 if [[ "$target_kind" == ".claude" ]]; then
   cp "$source_dir/CLAUDE_USAGE.md" "$target/VDAI_AI_STARTER_USAGE.md"
   cp "$source_dir/tools/claude_statusline.py" "$target/vdai-statusline.py"

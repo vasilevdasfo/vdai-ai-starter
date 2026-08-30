@@ -9,4 +9,4 @@ When the user explicitly asks you in chat to inspect and install this starter, r
 Codex route: normal Local task/chat, not Send as goal or /goal; Auto means workspace-write plus on-request approvals; never select Full access automatically.
 Claude Code route: normal new session, Bypass permissions OFF, approval before writes; install or merge CLAUDE.md, CLAUDE_USAGE.md and the optional status-line helper.
 
-Use the language of the user's current message. Prefer identity-matched Codex counters; if unavailable use visible native context used/limit and label it context. Claude Code uses official /usage or statusLine context fields. Always show the 🟩/🟨/🟥 scale; use ⚪ only when no exact source exists. Never emit a Russian task-weight heading in a non-Russian conversation.
+Use the language of the user's current message. Codex must run the installed exact-thread helper before declaring weight unavailable; then it may use visible native context. Claude Code uses official context fields. Always show the 🟩/🟨/🟥 scale and automatic visual task labels; use ⚪ only when no exact source exists. Never emit a Russian task-weight heading in a non-Russian conversation.

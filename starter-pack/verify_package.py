@@ -104,6 +104,14 @@ def verify(pack: Path) -> list[str]:
         if required not in feedback:
             errors.append(f"feedback guide lacks: {required}")
 
+    visual = (pack / "VISUAL_TASK_LABELS.md").read_text(encoding="utf-8") if (pack / "VISUAL_TASK_LABELS.md").is_file() else ""
+    for required in ("🎯 P", "🚧 U", "🛡️ L", "🛠️ R", "✅ N", "📁 TASK", "👤 OWNER", "🔎 PROOF"):
+        if required not in visual:
+            errors.append(f"visual guide lacks: {required}")
+    helper = pack / "tools" / "codex_task_weight.py"
+    if not helper.is_file() or "exact-thread identity mismatch" not in helper.read_text(encoding="utf-8"):
+        errors.append("Codex exact-thread weight helper missing or fail-open")
+
     numbering = (pack / "skills" / "numbering-canon" / "SKILL.md").read_text(encoding="utf-8")
     if "Почему:" in numbering or "localized to the user's current language" not in numbering:
         errors.append("numbering-canon hard-codes or fails to localize the reason label")
@@ -122,6 +130,10 @@ def verify(pack: Path) -> list[str]:
             errors.append(f"{installer_name} does not include Claude usage support")
         if "FEEDBACK.md" not in installer or "VDAI_AI_STARTER_FEEDBACK.md" not in installer:
             errors.append(f"{installer_name} does not install feedback guide")
+        if "VISUAL_TASK_LABELS.md" not in installer or "VDAI_AI_STARTER_VISUAL_GUIDE.md" not in installer:
+            errors.append(f"{installer_name} does not install visual guide")
+        if "codex_task_weight.py" not in installer or "vdai-task-weight.py" not in installer:
+            errors.append(f"{installer_name} does not install Codex weight helper")
 
     return errors
 

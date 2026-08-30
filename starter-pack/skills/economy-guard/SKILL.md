@@ -11,7 +11,7 @@ First detect the current platform and the language of the user's current message
 
 ## Platform-native counters
 
-For Codex, when exact identity-matched counters are available, show cumulative input, uncached input, and calls. Use the Codex thresholds below. If cumulative counters are unavailable but the native Codex Status panel visibly exposes context tokens, use the displayed context used/limit values as an explicitly labeled fallback; never relabel context as cumulative.
+For Codex, run the installed `vdai-task-weight.py` with the exact current thread ID before declaring weight unavailable. It reads only the one live local rollout, fails closed on identity mismatch, and returns cumulative input, uncached input, calls, and status. If the helper cannot prove identity but the native Codex Status panel visibly exposes context tokens, use those displayed values as an explicitly labeled fallback; never relabel context as cumulative.
 
 For Claude Code, use only its official `/usage` or `statusLine` data. Read `CLAUDE_USAGE.md` when installed. Claude Code 2.1.132+ exposes current context input/output tokens and context percentage, not Codex cumulative/call counters. Label them `context`, never `cumulative`.
 

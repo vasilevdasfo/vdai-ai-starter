@@ -18,6 +18,8 @@ Required flow:
 - On Claude Code, include CLAUDE_USAGE.md and the local-only status-line helper in the proposed diff, or use /usage. Report current context tokens and percentage, never fake Codex cumulative counters.
 - On Codex, prefer identity-matched cumulative/uncached/call counters. If unavailable but the native Status panel exposes context tokens, report context used/limit and percentage instead of saying unavailable. Always show the 🟩/🟨/🟥 scale; use ⚪ only when neither source exists.
 - Install VDAI_AI_STARTER_FEEDBACK.md. Feedback is drafted locally, then submitted only with human approval through the public GitHub Issue form; never include secrets or private data.
+- Install the Codex exact-thread weight helper and visual task guide. Run the helper before declaring token weight unavailable, and apply visual task labels automatically without waiting for another user command.
+- If an older Starter is installed, compare it with the latest manifest, show one update diff and approval gate, then verify tokens, colors, visual labels and feedback.
 - Run all 11 verification tasks and both verification turns.
 - Return a row-by-row PASS/FAIL matrix. Partial installation is FAIL.
 

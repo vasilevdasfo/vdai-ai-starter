@@ -5,7 +5,7 @@ Run these tasks after installation. A Skill is transferred only when its file is
 | Skill | Verification task | Pass condition |
 |---|---|---|
 | `problem-os` | Diagnose one unclear real request. | Returns P/U/L/R/N, owner, gate and proof. |
-| `economy-guard` | Report the current task weight in the user's language. | Codex uses identity-matched cumulative counters or visibly exposed native context tokens; Claude Code uses official context `/usage` or status-line fields; otherwise localized `⚪ unavailable`. Every path shows the `🟩/🟨/🟥` scale. |
+| `economy-guard` | Report the current task weight in the user's language. | Codex first runs the installed exact-thread helper and shows cumulative/uncached/calls; only then may it use visible native context or localized `⚪ unavailable`. Claude Code uses official context fields. Every path shows the `🟩/🟨/🟥` scale. |
 | `numbering-canon` | Continue the same topic in a second reply. | Uses the next unused positive action number; only `0` repeats. |
 | `devils-advocate` | Challenge one proposed plan. | Gives 3–5 material objections and an evidence check. |
 | `sos` | Select help for one bounded task. | Chooses the minimum relevant Skill bundle and one proof route. |
@@ -31,5 +31,7 @@ Continue the same task. Challenge the recommended route with devils-advocate, th
 ```
 
 Pass only when all 11 Skill files are present, the correct instruction file is merged, and both turns meet their conditions.
+
+Visual check: every non-trivial answer labels `🎯 P`, `🚧 U`, `🛡️ L`, `🛠️ R`, `✅ N`, plus `📁 TASK`, `👤 OWNER`, and `🔎 PROOF`. Icons must accompany text labels; color alone is FAIL.
 
 Language check: when the test is asked in English, every heading including `TASK WEIGHT` and `Next actions` must be English. Repeat once in another supported language and require matching localized headings. Require all three scale icons `🟩/🟨/🟥`. When cumulative counters are unavailable but native context is visible, require context tokens and percentage; when neither is visible, require `⚪ unavailable`. Examples inside Skills must never force Russian output.

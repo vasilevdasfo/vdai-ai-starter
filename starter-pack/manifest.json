@@ -1,15 +1,17 @@
 {
   "name": "VDAI AI Starter · Dmitrii Pro",
-  "version": 5,
+  "version": 6,
   "skills": ["problem-os", "economy-guard", "numbering-canon", "devils-advocate", "sos", "sos1", "sos2", "boardroom", "problem-to-action", "repeatable-work", "numbered-next"],
   "instruction_files": {"codex": "AGENTS.md", "claude": "CLAUDE.md"},
   "verification_playbook": "VERIFICATION.md",
   "claude_usage_guide": "CLAUDE_USAGE.md",
   "claude_statusline_helper": "tools/claude_statusline.py",
+  "codex_weight_helper": "tools/codex_task_weight.py",
+  "visual_task_guide": "VISUAL_TASK_LABELS.md",
   "feedback_guide": "FEEDBACK.md",
   "installed_layout": {
-    "codex": {"instruction": "AGENTS.md", "verification": "VDAI_AI_STARTER_VERIFICATION.md", "feedback": "VDAI_AI_STARTER_FEEDBACK.md"},
-    "claude": {"instruction": "CLAUDE.md", "verification": "VDAI_AI_STARTER_VERIFICATION.md", "usage": "VDAI_AI_STARTER_USAGE.md", "statusline_helper": "tools/claude_statusline.py", "feedback": "VDAI_AI_STARTER_FEEDBACK.md"},
+    "codex": {"instruction": "AGENTS.md", "verification": "VDAI_AI_STARTER_VERIFICATION.md", "feedback": "VDAI_AI_STARTER_FEEDBACK.md", "weight_helper": "vdai-task-weight.py", "visual_guide": "VDAI_AI_STARTER_VISUAL_GUIDE.md"},
+    "claude": {"instruction": "CLAUDE.md", "verification": "VDAI_AI_STARTER_VERIFICATION.md", "usage": "VDAI_AI_STARTER_USAGE.md", "statusline_helper": "tools/claude_statusline.py", "feedback": "VDAI_AI_STARTER_FEEDBACK.md", "visual_guide": "VDAI_AI_STARTER_VISUAL_GUIDE.md"},
     "source_filenames_required_in_live_profile": false
   },
   "acceptance": {"skill_files": 11, "verification_turns": 2, "language_auto_detect": true, "platform_native_weight": true, "visible_weight_scale": true, "feedback_route_installed": true, "partial_install_is_complete": false}

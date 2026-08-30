@@ -46,4 +46,4 @@ Turn 2 in the same task:
 
 `Continue the same topic. Show the next available routes without reusing any positive number from your previous answer.`
 
-The second reply fails if it starts again at `1`, omits the platform-appropriate token/context weight block or the visible `🟩/🟨/🟥` scale, uses a heading in the wrong language, or drops the observable result/blocker.
+The second reply fails if it starts again at `1`, skips the installed Codex exact-thread helper before saying unavailable, omits the token/context weight block or visible `🟩/🟨/🟥` scale, drops the visual task labels, uses a heading in the wrong language, or drops the observable result/blocker.

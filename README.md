@@ -28,6 +28,7 @@ Machine-readable entrypoints: [`agent.json`](agent.json) · [`agent.txt`](agent.
 - For Codex, review [starter-pack/AGENTS.md](starter-pack/AGENTS.md).
 - For Claude Code, review [starter-pack/CLAUDE.md](starter-pack/CLAUDE.md).
 - For task weight, use verified cumulative counters when available; otherwise use visible platform-native context tokens and label them `context`. The current block always includes a visible `🟩/🟨/🟥` scale; `⚪` means no exact source is exposed.
+- Codex installs a local read-only `vdai-task-weight.py` helper that fails closed unless the requested thread, live rollout and runtime identity match. Non-trivial work also uses the installed visual task-label guide automatically.
 - After installation, use [starter-pack/FEEDBACK.md](starter-pack/FEEDBACK.md). The public GitHub form normalizes platform, version, language, observed/expected behavior and reproduction steps; publishing still requires human approval.
 - Follow [starter-pack/INSTALL.md](starter-pack/INSTALL.md) or inspect the installers before running them.
 - Use [starter-pack/VERIFICATION.md](starter-pack/VERIFICATION.md) for the 11 observable verification tasks.
