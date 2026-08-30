@@ -48,6 +48,13 @@ def verify(pack: Path) -> list[str]:
         errors.append("acceptance.platform_native_weight must be true")
     if manifest.get("acceptance", {}).get("partial_install_is_complete") is not False:
         errors.append("partial installation must never count as complete")
+    installed = manifest.get("installed_layout", {})
+    if installed.get("source_filenames_required_in_live_profile") is not False:
+        errors.append("source filenames must not be required in the live profile")
+    if installed.get("codex", {}).get("verification") != "VDAI_AI_STARTER_VERIFICATION.md":
+        errors.append("Codex installed verification path is wrong")
+    if installed.get("claude", {}).get("usage") != "VDAI_AI_STARTER_USAGE.md":
+        errors.append("Claude installed usage path is wrong")
 
     required_files = ["AGENTS.md", "CLAUDE.md", "CLAUDE_USAGE.md", "INSTALL.md", "VERIFICATION.md", "install.sh", "install.ps1", "tools/claude_statusline.py"]
     for relative in required_files:
@@ -75,11 +82,23 @@ def verify(pack: Path) -> list[str]:
         instruction = (pack / instruction_name).read_text(encoding="utf-8")
         if "language of the user's current message" not in instruction:
             errors.append(f"{instruction_name} lacks automatic language selection")
+        if "Do not require source-only filenames" not in instruction:
+            errors.append(f"{instruction_name} confuses source and installed paths")
+        if "Never label work `[COMPLETE]`" not in instruction:
+            errors.append(f"{instruction_name} allows false completion with an open gate")
+        if "Почему:" in instruction or "ВЕС ЗАДАЧИ" in instruction:
+            errors.append(f"{instruction_name} hard-codes Russian user-facing labels")
 
     economy = (pack / "skills" / "economy-guard" / "SKILL.md").read_text(encoding="utf-8")
     for required in ("TASK WEIGHT", "PESO DE LA TAREA", "WAGA ZADANIA", "Claude Code", "statusLine"):
         if required not in economy:
             errors.append(f"economy-guard lacks: {required}")
+    if "omit the numeric/color weight block" not in economy:
+        errors.append("economy-guard does not define unavailable-counter omission")
+
+    numbering = (pack / "skills" / "numbering-canon" / "SKILL.md").read_text(encoding="utf-8")
+    if "Почему:" in numbering or "localized to the user's current language" not in numbering:
+        errors.append("numbering-canon hard-codes or fails to localize the reason label")
 
     for installer_name in ("install.sh", "install.ps1"):
         try:

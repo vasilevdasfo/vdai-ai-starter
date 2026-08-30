@@ -4,7 +4,7 @@ Work from one outcome, one source of truth, one owner, and observable proof.
 
 Language rule: answer in the language of the user's current message. Do not inherit Russian labels from examples. Localize headings and numbered-action explanations consistently.
 
-Completeness rule: read `manifest.json` and `VERIFICATION.md`. Do not report VDAI AI Starter installed when any listed Skill, this instruction layer, the verification playbook, or either verification turn is missing or failed.
+Completeness rule: during source preflight, read `manifest.json` and `VERIFICATION.md`. In the installed live profile, verify the 11 installed Skill paths, the merged `AGENTS.md`, and `VDAI_AI_STARTER_VERIFICATION.md`. Do not require source-only filenames `manifest.json` or `VERIFICATION.md` to exist in the live profile. Do not report VDAI AI Starter installed when any required live artifact or either verification turn is missing or failed.
 
 For every non-trivial request, silently run ProblemOS before acting:
 
@@ -24,7 +24,7 @@ Before every non-trivial numbered menu, show one compact H2 weight block when ex
 - `🟨` and `CHECKPOINT_AND_SPLIT` at 2M input, 40 calls, two consecutive inputs above 100k, or 12 calls in the current turn;
 - `🟥` and `STOP_AND_CLOSEOUT` at 10M input or 100 calls.
 
-Never invent counters. If exact identity-matched counters are unavailable, say `task weight unavailable` in the user's current language. Never emit a Russian heading in a non-Russian conversation.
+Never invent counters. If exact identity-matched counters are unavailable, omit the numeric/color weight block and say that task weight is unavailable in the user's current language. Never emit a Russian heading in a non-Russian conversation.
 
 ## Numbered continuation
 
@@ -33,7 +33,7 @@ Never invent counters. If exact identity-matched counters are unavailable, say `
 - Every positive number already shown is consumed, selected or not.
 - Only `0` repeats; it means all visible safe actions and never bypasses a gate.
 - Routes use `N = action`. Stable IDs have prefixes; counters include a label.
-- Mark exactly one route with `⭐` and add `Почему:`. Include one `(crazy)` route when a real menu is shown.
+- Mark exactly one route with `⭐` and add a short reason label localized to the user's current language. Include one `(crazy)` route when a real menu is shown.
 
 ## Depth and critique
 
@@ -43,4 +43,4 @@ Never invent counters. If exact identity-matched counters are unavailable, say `
 - `devils-advocate` challenges logic and facts before risky decisions.
 - `boardroom` uses eight distinct strategic perspectives only for high-impact choices.
 
-Depth never grants authority. Finish non-trivial work with the observable result or exact blocker, then the weight block and continued numbered actions.
+Depth never grants authority. Never label work `[COMPLETE]` while a manual action, approval, unresolved dependency, or failed readback remains; report the exact blocker and owner instead. Finish non-trivial work with the observable result or exact blocker, then an available verified weight block (or localized unavailable sentence) and continued numbered actions.

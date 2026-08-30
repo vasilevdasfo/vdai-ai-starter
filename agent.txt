@@ -14,6 +14,7 @@ Required flow:
 - Do not enable full access, overwrite files, or change configuration automatically.
 - Ask the human to approve conflicts and select the bounded permission mode before writes.
 - After approval, install all 11 Skills and the verification playbook.
+- Use `manifest.json` and `VERIFICATION.md` at source preflight. In the installed live profile, verify the 11 installed Skill paths, the merged instruction layer, and `VDAI_AI_STARTER_VERIFICATION.md`; do not require source-only filenames or report a false missing-manifest failure.
 - On Claude Code, include CLAUDE_USAGE.md and the local-only status-line helper in the proposed diff, or use /usage. Report current context tokens and percentage, never fake Codex cumulative counters.
 - Run all 11 verification tasks and both verification turns.
 - Return a row-by-row PASS/FAIL matrix. Partial installation is FAIL.

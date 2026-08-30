@@ -54,6 +54,7 @@
     "Ask the human to approve conflicts and select the bounded permission mode before any write or configuration change.",
     "On Codex, use a normal Local task in Auto (workspace-write + on-request approvals); do not turn this one-pass install into /goal and do not require Full access.",
     "After approval, install all 11 Skills, merge only approved instruction changes and copy the verification playbook.",
+    "Distinguish source filenames from installed live-profile paths: use manifest.json and VERIFICATION.md during preflight, but verify VDAI_AI_STARTER_VERIFICATION.md and the installed instruction/Skill paths after installation; do not report a missing source manifest in the live profile.",
     "On Claude Code, offer the included local-only status-line helper in the settings diff or use /usage; label current context tokens as context, not Codex cumulative counters.",
     "Run the package verifier and both verification turns; return a row-by-row PASS/FAIL matrix."
   ],
@@ -72,6 +73,12 @@
     "verification_turns": 2,
     "language_auto_detect": true,
     "platform_native_weight": true,
+    "installed_path_contract": {
+      "source_filenames_required_in_live_profile": false,
+      "codex_verification": "VDAI_AI_STARTER_VERIFICATION.md",
+      "claude_verification": "VDAI_AI_STARTER_VERIFICATION.md",
+      "claude_usage": "VDAI_AI_STARTER_USAGE.md"
+    },
     "required_result": "PASS for every row; otherwise report the exact blocker and do not claim completion."
   }
 }

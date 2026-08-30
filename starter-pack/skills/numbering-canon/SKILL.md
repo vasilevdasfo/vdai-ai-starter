@@ -20,7 +20,7 @@ description: Keep selectable actions in one task-local sequence and separate men
 - A genuine topic or project change starts a new local sequence at `1`; do not carry unrelated menu state across topics.
 - Do not confuse phone numbers, chat IDs, dates, versions, counts, or ordered prose with selectable routes. Prefix stable identifiers and label counters.
 - Use `N = action`, not `N.` or an em dash, for selectable routes.
-- Keep exactly one starred recommendation and state `Почему:` on that route.
+- Keep exactly one starred recommendation and state its reason with a label localized to the user's current language.
 - Include one clearly labeled unconventional route only when it is meaningful, not as decoration.
 - `0` executes all visible safe routes, but excludes any route still waiting for deploy, send, purchase, access, deletion, or another explicit approval.
 

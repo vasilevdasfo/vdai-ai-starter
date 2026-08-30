@@ -32,7 +32,7 @@ Localized headings:
 - Spanish: `PESO DE LA TAREA`
 - Polish: `WAGA ZADANIA`
 
-Never invent counters. If exact counters or identity proof are unavailable, say `task weight unavailable` in the user's current language and do not display guessed numbers. Do not emit a Russian heading in an English, Spanish, or Polish conversation.
+Never invent counters. If exact counters or identity proof are unavailable, omit the numeric/color weight block, say that task weight is unavailable in the user's current language, and do not display guessed numbers. Do not emit a Russian heading in an English, Spanish, or Polish conversation.
 
 ## Identity and counting rules
 
