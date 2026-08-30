@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+target="${1:-}"
+target_kind="$(basename "$target")"
+if [[ -z "$target" || ( "$target_kind" != ".codex" && "$target_kind" != ".claude" ) ]]; then
+  echo "Usage: bash install.sh /explicit/path/.codex  # or .claude"
+  exit 2
+fi
+source_dir="$(cd "$(dirname "$0")" && pwd)"
+skills=(problem-os economy-guard numbering-canon devils-advocate sos sos1 sos2 boardroom problem-to-action repeatable-work numbered-next)
+conflict=0
+if [[ "$target_kind" == ".codex" ]]; then
+  [[ -e "$target/AGENTS.md" ]] && conflict=1
+else
+  [[ -e "$target/CLAUDE.md" ]] && conflict=1
+fi
+for skill in "${skills[@]}"; do [[ -e "$target/skills/$skill" ]] && conflict=1; done
+if [[ "$conflict" -eq 1 ]]; then
+  echo "Existing Claude configuration detected. Nothing was overwritten. Follow INSTALL.md to merge manually."
+  exit 3
+fi
+mkdir -p "$target"
+if [[ "$target_kind" == ".codex" ]]; then
+  cp "$source_dir/AGENTS.md" "$target/AGENTS.md"
+else
+  cp "$source_dir/CLAUDE.md" "$target/CLAUDE.md"
+fi
+for skill in "${skills[@]}"; do
+  mkdir -p "$target/skills/$skill"
+  cp "$source_dir/skills/$skill/SKILL.md" "$target/skills/$skill/SKILL.md"
+done
+echo "VDAI AI Starter · Dmitrii Pro installed. Restart the agent and run both verification turns from INSTALL.md."
