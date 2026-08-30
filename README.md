@@ -16,6 +16,7 @@ I explicitly ask you to inspect and install VDAI AI Starter. Open https://vdai.m
 - Review [CODEX_PERMISSIONS.md](CODEX_PERMISSIONS.md) before changing agent permissions.
 - For Codex, review [starter-pack/AGENTS.md](starter-pack/AGENTS.md).
 - For Claude Code, review [starter-pack/CLAUDE.md](starter-pack/CLAUDE.md).
+- For Claude Code token/context weight, review [starter-pack/CLAUDE_USAGE.md](starter-pack/CLAUDE_USAGE.md) and the local-only status-line helper. It uses Claude Code's official session fields and never labels current context as Codex cumulative usage.
 - Follow [starter-pack/INSTALL.md](starter-pack/INSTALL.md) or inspect the installers before running them.
 - Use [starter-pack/VERIFICATION.md](starter-pack/VERIFICATION.md) for the 11 observable verification tasks.
 - Use [starter-pack/manifest.json](starter-pack/manifest.json) as the machine-readable completeness contract.

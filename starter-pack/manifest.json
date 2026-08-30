@@ -1,8 +1,10 @@
 {
   "name": "VDAI AI Starter · Dmitrii Pro",
-  "version": 2,
+  "version": 3,
   "skills": ["problem-os", "economy-guard", "numbering-canon", "devils-advocate", "sos", "sos1", "sos2", "boardroom", "problem-to-action", "repeatable-work", "numbered-next"],
   "instruction_files": {"codex": "AGENTS.md", "claude": "CLAUDE.md"},
   "verification_playbook": "VERIFICATION.md",
-  "acceptance": {"skill_files": 11, "verification_turns": 2, "partial_install_is_complete": false}
+  "claude_usage_guide": "CLAUDE_USAGE.md",
+  "claude_statusline_helper": "tools/claude_statusline.py",
+  "acceptance": {"skill_files": 11, "verification_turns": 2, "language_auto_detect": true, "platform_native_weight": true, "partial_install_is_complete": false}
 }

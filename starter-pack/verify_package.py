@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
+import subprocess
 import sys
 import tempfile
 from pathlib import Path
@@ -40,10 +42,14 @@ def verify(pack: Path) -> list[str]:
         errors.append("acceptance.skill_files must be 11")
     if manifest.get("acceptance", {}).get("verification_turns") != 2:
         errors.append("acceptance.verification_turns must be 2")
+    if manifest.get("acceptance", {}).get("language_auto_detect") is not True:
+        errors.append("acceptance.language_auto_detect must be true")
+    if manifest.get("acceptance", {}).get("platform_native_weight") is not True:
+        errors.append("acceptance.platform_native_weight must be true")
     if manifest.get("acceptance", {}).get("partial_install_is_complete") is not False:
         errors.append("partial installation must never count as complete")
 
-    required_files = ["AGENTS.md", "CLAUDE.md", "INSTALL.md", "VERIFICATION.md", "install.sh", "install.ps1"]
+    required_files = ["AGENTS.md", "CLAUDE.md", "CLAUDE_USAGE.md", "INSTALL.md", "VERIFICATION.md", "install.sh", "install.ps1", "tools/claude_statusline.py"]
     for relative in required_files:
         if not (pack / relative).is_file():
             errors.append(f"missing required file: {relative}")
@@ -62,6 +68,18 @@ def verify(pack: Path) -> list[str]:
             errors.append(f"verification task missing for: {skill}")
     if verification.count("| `") != 11:
         errors.append("verification table must contain exactly 11 Skill tasks")
+    if "TASK WEIGHT" not in verification or "user's language" not in verification:
+        errors.append("verification must test language-aware task weight")
+
+    for instruction_name in ("AGENTS.md", "CLAUDE.md"):
+        instruction = (pack / instruction_name).read_text(encoding="utf-8")
+        if "language of the user's current message" not in instruction:
+            errors.append(f"{instruction_name} lacks automatic language selection")
+
+    economy = (pack / "skills" / "economy-guard" / "SKILL.md").read_text(encoding="utf-8")
+    for required in ("TASK WEIGHT", "PESO DE LA TAREA", "WAGA ZADANIA", "Claude Code", "statusLine"):
+        if required not in economy:
+            errors.append(f"economy-guard lacks: {required}")
 
     for installer_name in ("install.sh", "install.ps1"):
         try:
@@ -73,6 +91,8 @@ def verify(pack: Path) -> list[str]:
                 errors.append(f"{installer_name} does not install: {skill}")
         if "VERIFICATION.md" not in installer:
             errors.append(f"{installer_name} does not install the verification playbook")
+        if "CLAUDE_USAGE.md" not in installer or "claude_statusline.py" not in installer:
+            errors.append(f"{installer_name} does not include Claude usage support")
 
     return errors
 
@@ -99,7 +119,25 @@ def main() -> int:
                 print("- negative test accepted a package with one missing Skill")
                 return 1
 
-    print("PASS: 11 Skills + 11 tasks + instructions + two-turn verification; partial-package negative test passed")
+        with tempfile.TemporaryDirectory(prefix="vdai-ai-starter-statusline-") as temp_dir:
+            mock = {
+                "session_id": "test-session-abc",
+                "transcript_path": "/tmp/test.jsonl",
+                "model": {"display_name": "Sonnet"},
+                "version": "2.1.132",
+                "context_window": {"total_input_tokens": 15500, "total_output_tokens": 1200, "used_percentage": 8, "remaining_percentage": 92, "context_window_size": 200000},
+                "cost": {"total_cost_usd": 0.01234},
+            }
+            env = os.environ.copy()
+            env["HOME"] = temp_dir
+            result = subprocess.run([sys.executable, str(args.pack.resolve() / "tools" / "claude_statusline.py")], input=json.dumps(mock), text=True, capture_output=True, env=env, check=False)
+            snapshot = Path(temp_dir) / ".claude" / "vdai-task-weight" / "test-session-abc.json"
+            if result.returncode != 0 or "ctx 8%" not in result.stdout or not snapshot.is_file():
+                print("FAIL")
+                print("- Claude status-line helper did not render and snapshot official counters")
+                return 1
+
+    print("PASS: 11 Skills + 11 tasks + auto-language + platform-native weight + two-turn verification; negative tests passed")
     return 0
 
 

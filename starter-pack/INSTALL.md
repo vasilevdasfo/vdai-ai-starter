@@ -12,6 +12,8 @@ If `~/.codex/AGENTS.md` or any target Skill already exists, the installer stops.
 
 `bash install.sh ~/.claude`
 
+The installer also copies `VDAI_AI_STARTER_USAGE.md` and `vdai-statusline.py`. Review the settings snippet in the usage guide before merging it into `~/.claude/settings.json`. Existing status-line settings are never overwritten automatically. Claude Code can then expose exact current-context input/output tokens and context percentage; these are not labeled as Codex cumulative counters.
+
 ## Windows PowerShell
 
 From this unpacked folder run:
@@ -20,7 +22,7 @@ From this unpacked folder run:
 
 ## Manual installation
 
-For Codex, merge `AGENTS.md` into `~/.codex/AGENTS.md`, copy `VERIFICATION.md` as `~/.codex/VDAI_AI_STARTER_VERIFICATION.md`, and copy the eleven folders inside `skills/` into `~/.codex/skills/`. For Claude Code, use `CLAUDE.md`, `~/.claude/VDAI_AI_STARTER_VERIFICATION.md`, and `~/.claude/skills/`. Restart the app or open a new task. Existing files must be merged deliberately.
+For Codex, merge `AGENTS.md` into `~/.codex/AGENTS.md`, copy `VERIFICATION.md` as `~/.codex/VDAI_AI_STARTER_VERIFICATION.md`, and copy the eleven folders inside `skills/` into `~/.codex/skills/`. For Claude Code, use `CLAUDE.md`, `~/.claude/VDAI_AI_STARTER_VERIFICATION.md`, `CLAUDE_USAGE.md`, `tools/claude_statusline.py`, and `~/.claude/skills/`. Restart the app or open a new task. Existing files and status-line settings must be merged deliberately.
 
 ## Included Skills
 
@@ -44,4 +46,4 @@ Turn 2 in the same task:
 
 `Continue the same topic. Show the next available routes without reusing any positive number from your previous answer.`
 
-The second reply fails if it starts again at `1`, omits the weight block, or drops the observable result/blocker.
+The second reply fails if it starts again at `1`, omits the platform-appropriate weight block, uses a heading in the wrong language, or drops the observable result/blocker.

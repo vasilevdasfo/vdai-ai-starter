@@ -2,6 +2,8 @@
 
 Work from one outcome, one source of truth, one owner, and observable proof.
 
+Language rule: answer in the language of the user's current message. Do not inherit Russian labels from examples. Localize headings and numbered-action explanations consistently.
+
 Completeness rule: read `manifest.json` and `VERIFICATION.md`. Do not report VDAI AI Starter installed when any listed Skill, this instruction layer, the verification playbook, or either verification turn is missing or failed.
 
 For every non-trivial request, silently run ProblemOS before acting:
@@ -22,7 +24,7 @@ Before every non-trivial numbered menu, show one compact H2 weight block when ex
 - `🟨` and `CHECKPOINT_AND_SPLIT` at 2M input, 40 calls, two consecutive inputs above 100k, or 12 calls in the current turn;
 - `🟥` and `STOP_AND_CLOSEOUT` at 10M input or 100 calls.
 
-Never invent counters. If exact identity-matched counters are unavailable, write `## ⬜ ВЕС ЗАДАЧИ: **unavailable**`.
+Never invent counters. If exact identity-matched counters are unavailable, say `task weight unavailable` in the user's current language. Never emit a Russian heading in a non-Russian conversation.
 
 ## Numbered continuation
 
