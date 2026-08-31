@@ -52,4 +52,4 @@ foreach ($skill in $skills) {
   New-Item -ItemType Directory -Force -Path $dest | Out-Null
   Copy-Item "$source\skills\$skill\SKILL.md" "$dest\SKILL.md" -Force
 }
-Write-Host "VDAI AI Starter · Dmitrii Pro installed. Restart the agent and run both turns from VDAI_AI_STARTER_VERIFICATION.md. Feedback instructions: VDAI_AI_STARTER_FEEDBACK.md. Claude Code users: review VDAI_AI_STARTER_USAGE.md before merging statusLine settings."
+Write-Host "VDAI AI Starter installed. Restart the agent and run both turns from VDAI_AI_STARTER_VERIFICATION.md. Feedback instructions: VDAI_AI_STARTER_FEEDBACK.md. Claude Code users: review VDAI_AI_STARTER_USAGE.md before merging statusLine settings."

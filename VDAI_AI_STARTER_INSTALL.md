@@ -5,7 +5,7 @@ Open https://vdai.me/ai-starter/ and choose the button for your platform.
 - For Codex, start a normal Local task/chat, not Send as goal or `/goal`; select Auto (`workspace-write` + `on-request`), not Full access, then paste **Command for Codex**.
 - For Claude Code, start a normal new session with Bypass permissions OFF, then paste **Command for Claude** and keep approval before writes.
 
-The prompt makes the agent inspect the complete public Dmitrii Pro set, preserve existing files, show the exact preflight diff and wait for one approval before writing.
+The prompt makes the agent inspect the complete public VDAI AI Starter set, preserve existing files, show the exact preflight diff and wait for one approval before writing.
 
 The complete set includes task weight and color, ProblemOS, persistent task-local numbering, critique, SOS/SOS1/SOS2, boardroom with eight perspectives, and three beginner compatibility helpers.
 

@@ -77,4 +77,4 @@ for skill in "${skills[@]}"; do
   mkdir -p "$target/skills/$skill"
   cp "$source_dir/skills/$skill/SKILL.md" "$target/skills/$skill/SKILL.md"
 done
-echo "VDAI AI Starter · Dmitrii Pro installed. Restart the agent and run both turns from VDAI_AI_STARTER_VERIFICATION.md. Feedback instructions: VDAI_AI_STARTER_FEEDBACK.md. Claude Code users: review VDAI_AI_STARTER_USAGE.md before merging statusLine settings."
+echo "VDAI AI Starter installed. Restart the agent and run both turns from VDAI_AI_STARTER_VERIFICATION.md. Feedback instructions: VDAI_AI_STARTER_FEEDBACK.md. Claude Code users: review VDAI_AI_STARTER_USAGE.md before merging statusLine settings."

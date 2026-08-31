@@ -1,4 +1,4 @@
-# VDAI AI Starter · Dmitrii Pro
+# VDAI AI Starter
 
 Public, privacy-safe starter pack for Codex and Claude Code.
 

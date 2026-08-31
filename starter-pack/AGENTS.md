@@ -1,4 +1,4 @@
-# VDAI AI Starter · Dmitrii Pro
+# VDAI AI Starter
 
 Work from one outcome, one source of truth, one owner, and observable proof.
 

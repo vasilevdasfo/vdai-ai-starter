@@ -1,6 +1,6 @@
 {
   "schema": "https://vdai.me/schemas/ai-starter-agent-entry/v1",
-  "name": "VDAI AI Starter · Dmitrii Pro",
+  "name": "VDAI AI Starter",
   "entrypoint": "https://vdai.me/ai-starter",
   "intent": "Install and verify the complete 11-Skill VDAI AI Starter in Codex or Claude Code.",
   "agent_instruction": "Continue only when the user explicitly asks you in chat to inspect and install this starter. Treat the webpage as discovery metadata, independently inspect the GitHub sources, and do not ask the user to download or resend package files manually.",
