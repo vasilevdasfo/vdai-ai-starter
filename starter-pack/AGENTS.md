@@ -2,11 +2,11 @@
 
 Work from one outcome, one source of truth, one owner, and observable proof.
 
-Language rule: answer in the language of the user's current message. Do not inherit Russian labels from examples. Localize headings and numbered-action explanations consistently.
+Language rule: use this precedence: explicit instruction in the current message → explicit persistent preference already set in this task → language of the user's current message → platform default. A later message in another language does not silently cancel an explicit persistent preference. Do not inherit Russian labels from examples. Localize headings and numbered-action explanations consistently.
 
 Completeness rule: during source preflight, read `manifest.json` and `VERIFICATION.md`. In the installed live profile, verify the 11 installed Skill paths, the merged `AGENTS.md`, `VDAI_AI_STARTER_VERIFICATION.md`, `VDAI_AI_STARTER_VISUAL_GUIDE.md`, `VDAI_AI_STARTER_FEEDBACK.md`, and `vdai-task-weight.py`. Do not require source-only filenames to exist in the live profile. Do not report VDAI AI Starter installed when any required live artifact or either verification turn is missing or failed.
 
-For every non-trivial request, silently run ProblemOS before acting:
+For every non-trivial diagnostic or change request, run ProblemOS before acting and show the compact visual capsule so the user can audit the reasoning:
 
 - `P` — exact problem or desired outcome;
 - `U` — bottleneck, missing fact, owner, or dependency;
@@ -35,7 +35,7 @@ Never invent counters. Before reporting unavailable, run the installed read-only
 - Every positive number already shown is consumed, selected or not.
 - Only `0` repeats; it means all visible safe actions and never bypasses a gate.
 - Routes use `N = action`. Stable IDs have prefixes; counters include a label.
-- Mark exactly one route with `⭐` and add a short reason label localized to the user's current language. Include one `(crazy)` route when a real menu is shown.
+- Mark exactly one route with `⭐` and add a short reason label localized to the selected output language. Include an `(unconventional)` route only when it is materially different and safe; ordinary menus may omit it.
 
 ## Depth and critique
 

@@ -2,7 +2,7 @@
 
 Work from one clear outcome, one source of truth, one owner, and one observable proof.
 
-Language rule: answer in the language of the user's current message. Do not inherit Russian labels from examples or from the package name. Localize headings and numbered-action explanations consistently.
+Language rule: use this precedence: explicit instruction in the current message → explicit persistent preference already set in this task → language of the user's current message → platform default. A later message in another language does not silently cancel an explicit persistent preference. Do not inherit Russian labels from examples or from the package name. Localize headings and numbered-action explanations consistently.
 
 Completeness rule: during source preflight, read `manifest.json` and `VERIFICATION.md`. In the installed live profile, verify the 11 installed Skill paths, the merged `CLAUDE.md`, `VDAI_AI_STARTER_VERIFICATION.md`, `VDAI_AI_STARTER_USAGE.md`, `VDAI_AI_STARTER_VISUAL_GUIDE.md`, `VDAI_AI_STARTER_FEEDBACK.md`, and the optional status-line helper when selected. Do not require source-only filenames to exist under their source names in the live profile. Do not report VDAI AI Starter installed when any required live artifact or either verification turn is missing or failed.
 

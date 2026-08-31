@@ -16,6 +16,14 @@ Run these tasks after installation. A Skill is transferred only when its file is
 | `repeatable-work` | Turn one repeated job into a workflow. | Defines inputs, limits, artifact and acceptance check. |
 | `numbered-next` | Finish any non-trivial result. | Shows numbered routes, exactly one recommendation and safe `0`. |
 
+## Separate acceptance states
+
+- `STRUCTURAL INSTALL: PASS/FAIL` covers the installed instruction layer, all 11 Skill files, helpers, visual guide, feedback guide, and exact-path readback.
+- `BEHAVIORAL ACCEPTANCE: TURN 1/2` covers the first real response.
+- `BEHAVIORAL ACCEPTANCE: TURN 2/2` covers continuation behavior in the same task.
+
+Never report full installation verification before both behavioral turns pass. A structural PASS is not a behavioral PASS.
+
 ## Two-turn acceptance test
 
 Turn 1:
@@ -34,4 +42,4 @@ Pass only when all 11 Skill files are present, the correct instruction file is m
 
 Visual check: every non-trivial answer labels `🎯 P`, `🚧 U`, `🛡️ L`, `🛠️ R`, `✅ N`, plus `📁 TASK`, `👤 OWNER`, and `🔎 PROOF`. Icons must accompany text labels; color alone is FAIL.
 
-Language check: when the test is asked in English, every heading including `TASK WEIGHT` and `Next actions` must be English. Repeat once in another supported language and require matching localized headings. Require all three scale icons `🟩/🟨/🟥`. When cumulative counters are unavailable but native context is visible, require context tokens and percentage; when neither is visible, require `⚪ unavailable`. Examples inside Skills must never force Russian output.
+Language check: first explicitly set English as the persistent task preference, then send the second test message in Russian. Every heading, including `TASK WEIGHT` and `Next actions`, must remain English until the user explicitly changes the preference. Repeat with another supported preference. Require all three scale icons `🟩/🟨/🟥`. When cumulative counters are unavailable but native context is visible, require context tokens and percentage; when neither is visible, require `⚪ unavailable`. Examples inside Skills must never force Russian output.

@@ -1,6 +1,8 @@
 {
   "name": "VDAI AI Starter · Dmitrii Pro",
-  "version": 6,
+  "schema_version": 2,
+  "package_version": "7.0.0",
+  "version": 7,
   "skills": ["problem-os", "economy-guard", "numbering-canon", "devils-advocate", "sos", "sos1", "sos2", "boardroom", "problem-to-action", "repeatable-work", "numbered-next"],
   "instruction_files": {"codex": "AGENTS.md", "claude": "CLAUDE.md"},
   "verification_playbook": "VERIFICATION.md",
@@ -14,5 +16,6 @@
     "claude": {"instruction": "CLAUDE.md", "verification": "VDAI_AI_STARTER_VERIFICATION.md", "usage": "VDAI_AI_STARTER_USAGE.md", "statusline_helper": "tools/claude_statusline.py", "feedback": "VDAI_AI_STARTER_FEEDBACK.md", "visual_guide": "VDAI_AI_STARTER_VISUAL_GUIDE.md"},
     "source_filenames_required_in_live_profile": false
   },
-  "acceptance": {"skill_files": 11, "verification_turns": 2, "language_auto_detect": true, "platform_native_weight": true, "visible_weight_scale": true, "feedback_route_installed": true, "partial_install_is_complete": false}
+  "installer_capabilities": {"check": true, "plan": true, "platform_specific_conflicts": true, "silent_overwrite": false},
+  "acceptance": {"skill_files": 11, "verification_turns": 2, "language_auto_detect": true, "structural_and_behavioral_are_separate": true, "language_precedence": ["explicit_current_instruction", "persistent_task_preference", "current_message_language", "platform_default"], "platform_native_weight": true, "visible_weight_scale": true, "feedback_route_installed": true, "partial_install_is_complete": false}
 }

@@ -1,27 +1,58 @@
 #!/usr/bin/env bash
 set -euo pipefail
+mode="install"
+if [[ "${1:-}" == "--check" || "${1:-}" == "--plan" ]]; then
+  mode="${1#--}"
+  shift
+fi
 target="${1:-}"
 target_kind="$(basename "$target")"
 if [[ -z "$target" || ( "$target_kind" != ".codex" && "$target_kind" != ".claude" ) ]]; then
-  echo "Usage: bash install.sh /explicit/path/.codex  # or .claude"
+  echo "Usage: bash install.sh [--check|--plan] /explicit/path/.codex  # or .claude"
   exit 2
 fi
 source_dir="$(cd "$(dirname "$0")" && pwd)"
 skills=(problem-os economy-guard numbering-canon devils-advocate sos sos1 sos2 boardroom problem-to-action repeatable-work numbered-next)
-conflict=0
+platform_name="Codex"
+[[ "$target_kind" == ".claude" ]] && platform_name="Claude Code"
+conflicts=()
+planned=()
+record_target() {
+  local source="$1" destination="$2"
+  planned+=("$destination")
+  if [[ -e "$destination" ]]; then
+    conflicts+=("$destination")
+  fi
+  return 0
+}
 if [[ "$target_kind" == ".codex" ]]; then
-  [[ -e "$target/AGENTS.md" ]] && conflict=1
+  record_target "$source_dir/AGENTS.md" "$target/AGENTS.md"
 else
-  [[ -e "$target/CLAUDE.md" ]] && conflict=1
+  record_target "$source_dir/CLAUDE.md" "$target/CLAUDE.md"
 fi
-[[ -e "$target/VDAI_AI_STARTER_VERIFICATION.md" ]] && conflict=1
-[[ -e "$target/VDAI_AI_STARTER_FEEDBACK.md" ]] && conflict=1
-[[ -e "$target/VDAI_AI_STARTER_VISUAL_GUIDE.md" ]] && conflict=1
-[[ "$target_kind" == ".codex" && -e "$target/vdai-task-weight.py" ]] && conflict=1
-[[ "$target_kind" == ".claude" && -e "$target/VDAI_AI_STARTER_USAGE.md" ]] && conflict=1
-for skill in "${skills[@]}"; do [[ -e "$target/skills/$skill" ]] && conflict=1; done
-if [[ "$conflict" -eq 1 ]]; then
-  echo "Existing Claude configuration detected. Nothing was overwritten. Follow INSTALL.md to merge manually."
+record_target "$source_dir/VERIFICATION.md" "$target/VDAI_AI_STARTER_VERIFICATION.md"
+record_target "$source_dir/FEEDBACK.md" "$target/VDAI_AI_STARTER_FEEDBACK.md"
+record_target "$source_dir/VISUAL_TASK_LABELS.md" "$target/VDAI_AI_STARTER_VISUAL_GUIDE.md"
+[[ "$target_kind" == ".codex" ]] && record_target "$source_dir/tools/codex_task_weight.py" "$target/vdai-task-weight.py"
+if [[ "$target_kind" == ".claude" ]]; then
+  record_target "$source_dir/CLAUDE_USAGE.md" "$target/VDAI_AI_STARTER_USAGE.md"
+  record_target "$source_dir/tools/claude_statusline.py" "$target/vdai-statusline.py"
+fi
+for skill in "${skills[@]}"; do record_target "$source_dir/skills/$skill/SKILL.md" "$target/skills/$skill/SKILL.md"; done
+
+if [[ "$mode" == "check" || "$mode" == "plan" ]]; then
+  echo "VDAI AI Starter $mode · platform=$platform_name · target=$target"
+  for destination in "${planned[@]}"; do
+    if [[ -e "$destination" ]]; then echo "CONFLICT $destination"; else echo "ADD $destination"; fi
+  done
+  [[ "${#conflicts[@]}" -eq 0 ]] && echo "RESULT READY" || echo "RESULT MERGE_REQUIRED conflicts=${#conflicts[@]}"
+  exit 0
+fi
+
+if [[ "${#conflicts[@]}" -gt 0 ]]; then
+  echo "Existing $platform_name configuration detected. Nothing was overwritten."
+  printf 'CONFLICT %s\n' "${conflicts[@]}"
+  echo "Run with --plan to review every destination, then follow INSTALL.md for an approved merge."
   exit 3
 fi
 mkdir -p "$target"
