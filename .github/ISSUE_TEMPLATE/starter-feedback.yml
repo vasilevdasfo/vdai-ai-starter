@@ -4,6 +4,13 @@ title: "[feedback]: "
 labels: ["feedback"]
 body:
   - type: dropdown
+    id: kind
+    attributes:
+      label: Feedback type
+      options: [Installation problem, Bug, Suggestion, Question]
+    validations:
+      required: true
+  - type: dropdown
     id: platform
     attributes:
       label: Platform
@@ -14,7 +21,7 @@ body:
     id: version
     attributes:
       label: Starter version
-      placeholder: "5"
+      placeholder: "7.0.0"
     validations:
       required: true
   - type: dropdown
