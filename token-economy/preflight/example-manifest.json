@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "root": "/replace/with/exact/project",
+  "task_key": "one-real-task-v1",
+  "max_files": 4,
+  "max_estimated_input_tokens": 12000,
+  "stable_prefix": [
+    "AGENTS.md"
+  ],
+  "sources": [
+    "AGENTS.md",
+    {
+      "path": "README.md",
+      "sections": [
+        "Acceptance"
+      ]
+    }
+  ]
+}

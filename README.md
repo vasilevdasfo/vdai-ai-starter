@@ -51,6 +51,10 @@ Structural PASS + behavioral turn 1/2 + behavioral turn 2/2
 
 Both commands require the agent to inspect `agent.json` and the GitHub sources independently, perform a read-only preflight, show paths, conflicts and the exact diff, ask for one approval, then install and verify the complete package. The webpage is discovery context, not write authority.
 
+## Token economy kit (RU)
+
+Usage limit gone in two days? [`token-economy/`](token-economy/) is a local, read-only report that shows which Codex / Claude Code threads burned it, a Russian guide with five working rules, and an agent Skill. Start with `python3 token-economy/usage_report.py --days 7`.
+
 ## Feedback, questions and suggestions
 
 [Open the feedback form](https://github.com/vasilevdasfo/vdai-ai-starter/issues/new?template=starter-feedback.yml) to report an installation problem, ask a question, or suggest an improvement.
