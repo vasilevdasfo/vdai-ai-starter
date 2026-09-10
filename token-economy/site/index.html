@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Экономия токенов · VDAI AI Starter</title>
+<meta name="description" content="Лимит Codex или Claude Code кончается за 2–3 дня? Проверьте за минуту, какая ветка его съела, и работайте по 5 правилам. Бесплатный набор: отчёт, инструкция, скилл.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://vdai.me/ai-starter/token-economy">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Экономия токенов · VDAI AI Starter">
+<meta property="og:description" content="Отчёт по вашим логам, 5 правил и скилл для агента. Codex и Claude Code.">
+<meta property="og:url" content="https://vdai.me/ai-starter/token-economy">
+<style>
+:root{--ink:#171714;--paper:#f5f1e8;--card:#fffdf7;--line:#cfc8bb;--accent:#e25a36;--muted:#69655e;--ok:#1f6f5c;--code:#efe9dc;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans)}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:5}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}
+.brand{font:600 13px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.brand span{color:var(--accent)}
+nav.links{display:flex;gap:16px;font-size:14px}
+nav.links a{text-decoration:none;color:var(--muted)}
+nav.links a:hover{color:var(--ink)}
+.eyebrow{font:600 12px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+.hero{padding:56px 0 36px}
+h1{font-size:clamp(30px,5.2vw,52px);line-height:1.08;letter-spacing:-.02em;margin:0 0 18px;max-width:17ch}
+.lead{font-size:clamp(17px,2.2vw,20px);color:var(--muted);max-width:60ch;margin:0 0 26px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 20px;border:1.5px solid var(--ink);border-radius:999px;font-weight:600;text-decoration:none;background:var(--card)}
+.btn.primary{background:var(--ink);color:var(--paper)}
+.btn:hover{transform:translateY(-1px)}
+.formula{margin:34px 0 0;padding:18px 20px;border:1px solid var(--line);border-left:4px solid var(--accent);background:var(--card);border-radius:10px;font-size:18px}
+.formula b{font-family:var(--mono);font-size:17px}
+section{padding:40px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(24px,3.4vw,32px);line-height:1.15;margin:0 0 8px;letter-spacing:-.01em}
+.sub{color:var(--muted);margin:0 0 24px;max-width:66ch}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+.stat .n{font:700 clamp(24px,3.2vw,32px)/1.1 var(--sans);letter-spacing:-.02em}
+.stat .t{color:var(--muted);font-size:14px;margin-top:6px}
+.note{font:12px/1.4 var(--mono);color:var(--muted);margin-top:12px}
+.rules{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;counter-reset:r}
+.rule{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;counter-increment:r}
+.rule:before{content:"0" counter(r);display:block;font:600 12px/1 var(--mono);color:var(--accent);margin-bottom:10px}
+.rule b{display:block;margin-bottom:6px;line-height:1.3}
+.rule p{margin:0;color:var(--muted);font-size:14px}
+.grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px}
+.grid2>*,.cmd{min-width:0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card h3{margin:0 0 10px;font-size:18px}
+.card ul{margin:0;padding-left:18px}
+.card li{margin:6px 0}
+.cmd{position:relative;margin:10px 0}
+pre{max-width:100%;margin:0;background:var(--code);border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-x:auto;font:14px/1.5 var(--mono);white-space:pre}
+.copy{position:absolute;top:8px;right:8px;border:1px solid var(--line);background:var(--card);border-radius:8px;font:12px var(--sans);padding:6px 10px;cursor:pointer}
+.sample{font-size:13px;color:#3d3a34}
+details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:10px 0}
+summary{cursor:pointer;padding:16px 18px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font:600 18px/1 var(--mono);color:var(--accent)}
+details[open] summary:after{content:"−"}
+details .body{padding:0 18px 16px}
+details li{margin:8px 0}
+code{font-family:var(--mono);font-size:.92em;background:var(--code);padding:1px 5px;border-radius:5px}
+pre code{background:none;padding:0}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);font-size:15px}
+th{font:600 12px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+tr:last-child td{border-bottom:0}
+.hash{font:12px/1.5 var(--mono);word-break:break-all;color:var(--muted)}
+.cta{background:var(--ink);color:var(--paper);border-radius:16px;padding:28px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px}
+.cta h2{color:var(--paper);margin:0}
+.cta p{margin:6px 0 0;color:#cfc8bb}
+.cta .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:14px}
+footer a{color:var(--ink)}
+@media (max-width:900px){.rules{grid-template-columns:repeat(2,minmax(0,1fr))}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:720px){.grid2{grid-template-columns:minmax(0,1fr)}nav.links a.hide-sm{display:none}.hero{padding:36px 0 26px}}
+@media (max-width:420px){.rules,.stats{grid-template-columns:minmax(0,1fr)}.btn{width:100%;justify-content:center}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/ai-starter">VDAI · <span>AI Starter</span></a>
+  <nav class="links"><a href="#check">Проверка</a><a class="hide-sm" href="#rules">Правила</a><a href="/ai-starter/capsule-lite.html">Capsule Lite</a></nav>
+</div></header>
+
+<main>
+<div class="wrap hero">
+  <p class="eyebrow">Экономия токенов · Codex и Claude Code</p>
+  <h1>Лимит кончился за 2 дня? Найдите ветку, которая его съела.</h1>
+  <p class="lead">Бесплатный набор: отчёт по вашим логам за минуту, 5 правил работы и скилл, который делает разбор за вас. Всё работает локально и ничего не отправляет.</p>
+  <div class="btns">
+    <a class="btn primary" href="/ai-starter/token-economy-kit.zip" download>Скачать набор · ZIP</a>
+    <a class="btn" href="#check">Проверить себя за минуту</a>
+  </div>
+  <div class="formula">Расход ≈ <b>число вызовов × размер переписки</b>. Каждый шаг агента отправляет модели всю ветку целиком: инструкции, историю, результаты команд.</div>
+</div>
+
+<section><div class="wrap">
+  <h2>Куда уходит лимит</h2>
+  <p class="sub">Замер по нашим логам Codex за сентябрь 2026. Ваши цифры покажет отчёт.</p>
+  <div class="stats">
+    <div class="stat"><div class="n">39 тыс.</div><div class="t">токенов стоит новая ветка Codex ещё до вашего первого слова</div></div>
+    <div class="stat"><div class="n">32 млн</div><div class="t">съела одна ветка с 8 разными вопросами: 246 вызовов</div></div>
+    <div class="stat"><div class="n">44%</div><div class="t">расхода за 2 дня дали ветки, где задали 4 и больше вопросов</div></div>
+    <div class="stat"><div class="n">≈4×</div><div class="t">быстрее тратит лимит самая тяжёлая модель против базовой</div></div>
+  </div>
+  <p class="note">Кеш удешевляет повтор переписки, но не делает его бесплатным.</p>
+</div></section>
+
+<section id="rules"><div class="wrap">
+  <h2>Пять главных правил</h2>
+  <p class="sub">Этого хватает, чтобы перестать сжигать неделю за два дня.</p>
+  <div class="rules">
+    <div class="rule"><b>Один вопрос — одна ветка</b><p>Новая тема — новая ветка, даже если «это быстро».</p></div>
+    <div class="rule"><b>Длинную ветку переносите</b><p>Результат готов или переписка тяжёлая — карточка и новая ветка.</p></div>
+    <div class="rule"><b>Новая ветка — не форк</b><p>Форк копирует историю: у нас старт 95 тыс. вместо 39 тыс.</p></div>
+    <div class="rule"><b>Точная задача</b><p>«Проверь всё ещё раз» превращается в сотню вызовов.</p></div>
+    <div class="rule"><b>Тяжёлая модель — редко</b><p>Только для сложного решения и в отдельной ветке.</p></div>
+  </div>
+</div></section>
+
+<section id="check"><div class="wrap">
+  <h2>Проверьте себя за минуту</h2>
+  <p class="sub">Скачайте набор, распакуйте и запустите в терминале из его папки. Нужен только Python 3.9+. Скрипт читает логи в <code>~/.codex/sessions</code> и <code>~/.claude/projects</code>, печатает цифры и не показывает текст переписки.</p>
+  <div class="grid2">
+    <div>
+      <div class="cmd"><pre><code>python3 usage_report.py --days 7</code></pre><button class="copy" type="button">Копировать</button></div>
+      <div class="cmd"><pre><code>python3 usage_report.py --days 1 --top 5</code></pre><button class="copy" type="button">Копировать</button></div>
+      <div class="cmd"><pre><code>python3 usage_report.py --json &gt; before.json</code></pre><button class="copy" type="button">Копировать</button></div>
+    </div>
+    <div class="card">
+      <h3>На что смотреть</h3>
+      <ul>
+        <li><b>По дням.</b> Норма — недельный лимит / 7, около 14% в день.</li>
+        <li><b>Самые дорогие ветки</b> с флагами: «N вопросов в одной ветке», «длинная переписка», «форк старой ветки», «тяжёлый старт».</li>
+        <li><b>Где утекает</b> — доля расхода на многовопросные ветки и на длинную переписку.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">Пример вывода из наших логов, ID веток сокращены:</p>
+  <pre class="sample"><code>CODEX: 95 веток, 7186 вызовов модели, 882,1 млн токенов входа
+  средний контекст на вызов: 123 тыс. · старт новой ветки: 39 тыс.
+  самые дорогие ветки:
+    01a0…b55 09-10: 32,4 млн, 246 вызовов, макс. контекст 224 тыс., вопросов 8
+      — 8 вопросов в одной ветке; длинная переписка; сжималась 3 раза
+  где утекает:
+    ветки с 4+ вопросами: 44% расхода → один вопрос — одна ветка
+    вызовы при контексте от 150 тыс.: 50% расхода → переносить в новую ветку раньше</code></pre>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Подробно</h2>
+  <p class="sub">Полная версия — в файле <code>GUIDE_RU.md</code> внутри набора.</p>
+  <details open><summary>Ветки</summary><div class="body"><ul>
+    <li>Не спрашивайте в рабочей ветке про другие ветки. Каждый такой вопрос оплачивается всей накопленной перепиской — задайте его в новой.</li>
+    <li>Переносите, когда результат готов, когда нужна работа с новым источником или когда контекст заполнен примерно на 70%.</li>
+    <li>Не просите агента самого создавать, проверять и архивировать ветки: у нас такой автоматический перенос занимал 19–48 вызовов в самой тяжёлой переписке.</li>
+  </ul></div></details>
+  <details><summary>Запросы</summary><div class="body"><ul>
+    <li>Давайте путь к файлу и что нужно: «в README раздел Установка, проверь команды», а не «проверь все файлы».</li>
+    <li>Просите сначала список файлов, потом чтение нужных строк. Один большой вывод команды добавляет 5–10 тыс. токенов и остаётся в переписке до конца.</li>
+    <li>Не вставляйте в чат длинные логи и выгрузки — положите в файл и попросите прочитать кусок.</li>
+    <li>Собирайте уточнения в одно сообщение: пять реплик подряд — пять пересылок всей переписки.</li>
+    <li>Сразу пишите, когда работа готова: «готово, когда тест проходит».</li>
+  </ul></div></details>
+  <details><summary>Настройки</summary><div class="body"><ul>
+    <li><b>Модель.</b> Базовая — для текстов, правок и поиска. Уровень рассуждений в наших замерах влиял меньше, чем число вызовов и длина переписки.</li>
+    <li><b>AGENTS.md / CLAUDE.md</b> уходят в каждый вызов. Больше 5–10 КБ — сокращайте и заменяйте пересказы ссылками.</li>
+    <li><b>Скиллы, плагины, MCP-серверы</b> добавляют описания в каждый вызов. Отключите то, чем не пользуетесь неделю.</li>
+    <li><b>Дневная норма.</b> Ушло больше 14% недельного лимита за день — запустите отчёт.</li>
+  </ul></div></details>
+</div></section>
+
+<section><div class="wrap grid2">
+  <div class="card">
+    <h3>Дешёвый перенос в новую ветку</h3>
+    <p>Попросите агента записать карточку до 3 КБ: результат, доказательство, решения, открытый вопрос, один следующий шаг. Откройте новую ветку сами и напишите:</p>
+    <div class="cmd"><pre><code>Прочитай только &lt;путь к карточке&gt;. Шаг: &lt;одно действие&gt;.
+Старую переписку не открывай.</code></pre><button class="copy" type="button">Копировать</button></div>
+    <p>Карточка стоит 1–2 тыс. токенов. Готовая форма — <a href="/ai-starter/capsule-lite.html">Capsule Lite</a>.</p>
+  </div>
+  <div class="card">
+    <h3>Команды</h3>
+    <div class="tbl"><table>
+      <tr><th>Действие</th><th>Codex</th><th>Claude Code</th></tr>
+      <tr><td>Новая ветка</td><td><code>/new</code></td><td><code>/clear</code></td></tr>
+      <tr><td>Сжать переписку</td><td><code>/compact</code></td><td><code>/compact</code></td></tr>
+      <tr><td>Что занимает контекст</td><td><code>/status</code></td><td><code>/context</code></td></tr>
+      <tr><td>Остаток лимита</td><td><code>/status</code></td><td><code>/usage</code></td></tr>
+      <tr><td>Сменить модель</td><td><code>/model</code></td><td><code>/model</code></td></tr>
+    </table></div>
+    <p class="note">Терминальные версии. Сжатие теряет детали — для важной работы надёжнее карточка.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap grid2">
+  <div class="card">
+    <h3>Скилл для агента</h3>
+    <ul>
+      <li>Codex: папку <code>skills/token-economy</code> → <code>~/.codex/skills/</code></li>
+      <li>Claude Code: ту же папку → <code>~/.claude/skills/</code></li>
+      <li>Напишите агенту: «лимит кончается — проверь, куда ушли токены».</li>
+    </ul>
+    <p>Скилл запускает отчёт, называет главные утечки с цифрами и даёт правила только под них. Настройки не меняет.</p>
+  </div>
+  <div class="card">
+    <h3>Что внутри набора</h3>
+    <ul>
+      <li><code>usage_report.py</code> — отчёт по вашим логам</li>
+      <li><code>GUIDE_RU.md</code> — подробная инструкция</li>
+      <li><code>skills/token-economy</code> — скилл для агента</li>
+      <li><code>preflight/</code> — проверка бюджета контекста до вызова модели</li>
+      <li><code>tests/</code> и <code>SHA256SUMS.txt</code> — проверка набора</li>
+    </ul>
+    <p class="hash">SHA-256 архива: 3c26ee8cf50d8b8b1e62b2c7bad71fc00a09878f5d04722bac2d0cb5bd13c664</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="cta">
+    <div><h2>Скачайте и проверьте свою неделю</h2><p>Отчёт до и отчёт после — единственный честный способ посчитать экономию.</p></div>
+    <a class="btn" href="/ai-starter/token-economy-kit.zip" download>Скачать набор · ZIP</a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p>Набор не меняет настройки, не удаляет переписку и ничего не отправляет в сеть. Проверено: 17 автотестов набора, контрольные суммы и прогон отчёта на реальных логах Codex и Claude Code.</p>
+  <p>Нашли ошибку или есть идея — <a href="https://github.com/vasilevdasfo/vdai-ai-starter/issues/new?template=starter-feedback.yml">напишите в GitHub</a> или на <a href="mailto:AI@vdai.me">AI@vdai.me</a>. Не прикладывайте ключи, переписку и приватные данные. <a href="/ai-starter">← AI Starter</a></p>
+</div></footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=b.parentElement.querySelector('code').innerText;
+    var done=function(){b.textContent='Скопировано';setTimeout(function(){b.textContent='Копировать'},1500)};
+    if(navigator.clipboard){navigator.clipboard.writeText(t).then(done,function(){})}
+  });
+});
+</script>
+</body>
+</html>
